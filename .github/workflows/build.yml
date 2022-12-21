@@ -25,5 +25,8 @@ jobs:
         with:
           flutter-version: '3.3.10'
           cache: true
+  build_android:
+    steps:
       - run: flutter pub get
-      - run: flutter build appbundle
+      - run: flutter build 
+      
