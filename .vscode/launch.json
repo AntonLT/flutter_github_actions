@@ -1,0 +1,90 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "mobile app (debug)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": []
+        },
+        {
+            "name": "pingNpay pnpd (debug)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "--web-renderer", "html",
+                "--flavor", "pnpd",
+                "--dart-define=FLAVOR=pnpd",
+                "--dart-define=ANDROID_BUNDLE_ID=com.pingnpay_pnpd.flutterapp",
+                "--dart-define=IOS_BUNDLE_IDENTIFIER=com.pingnpay-pnpd.flutterapp",
+                "--dart-define=IOS_PROVISION_PROFILE_NAME=pnpd pingNpay",
+                "--dart-define=APP_NAME=pingNpay PnPD",
+            ]
+        },
+        {
+            "name": "pingNpay west (profile)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": [
+                "--web-renderer", "html",
+                "--flavor", "west",
+                "--dart-define=FLAVOR=west",
+                "--dart-define=ANDROID_BUNDLE_ID=com.pingnpay.flutterapp",
+                "--dart-define=IOS_BUNDLE_IDENTIFIER=com.pingnpay.flutterapp",
+                "--dart-define=IOS_PROVISION_PROFILE_NAME=pingNpay",
+                "--dart-define=APP_NAME=pingNpay West",
+            ]
+        },
+        {
+            "name": "pingNpay pnpd (profile)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": [
+                "--web-renderer", "html",
+                "--flavor", "pnpd",
+                "--dart-define=FLAVOR=pnpd",
+                "--dart-define=ANDROID_BUNDLE_ID=com.pingnpay_pnpd.flutterapp",
+                "--dart-define=IOS_BUNDLE_IDENTIFIER=com.pingnpay-pnpd.flutterapp",
+                "--dart-define=IOS_PROVISION_PROFILE_NAME=pnpd pingNpay",
+                "--dart-define=APP_NAME=pingNpay PnPD",
+            ]
+        },
+        {
+            "name": "pingNpay west (release)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": [
+                "--web-renderer", "html",
+                "--flavor", "west",
+                "--dart-define=FLAVOR=west",
+                "--dart-define=ANDROID_BUNDLE_ID=com.pingnpay.flutterapp",
+                "--dart-define=IOS_BUNDLE_IDENTIFIER=com.pingnpay.flutterapp",
+                "--dart-define=IOS_PROVISION_PROFILE_NAME=pingNpay",
+                "--dart-define=APP_NAME=pingNpay West",
+            ]
+        },
+        {
+            "name": "pingNpay pnpd (release)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": [
+                "--web-renderer", "html",
+                "--flavor", "pnpd",
+                "--dart-define=FLAVOR=pnpd",
+                "--dart-define=ANDROID_BUNDLE_ID=com.pingnpay_pnpd.flutterapp",
+                "--dart-define=IOS_BUNDLE_IDENTIFIER=com.pingnpay-pnpd.flutterapp",
+                "--dart-define=IOS_PROVISION_PROFILE_NAME=pnpd pingNpay",
+                "--dart-define=APP_NAME=pingNpay PnPD",
+            ]
+        },
+    ]
+}
