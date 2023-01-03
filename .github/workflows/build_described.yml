@@ -29,6 +29,8 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: "11.0"
+          # Enables cache for java
+          # Speed up the build process
           cache: 'gradle'
       # Download and install flutter packages
       - uses: subosito/flutter-action@v2
@@ -36,11 +38,13 @@ jobs:
           # Define which stable flutter version should be used
           flutter-version: "3.3.10"
           channel: 'stable'
+          # Enables cache for flutter packages
+          # Speed up the build process
           cache: true
       # Get Flutter project dependencies
       - name: Get dependencies
         run: flutter pub get
-      # Build Android App Bundle
+      # Build Android App Bundle which by default will be stored in the ./build/app/outputs/bundle/ as app-release.aab
       - name: Start release build
         run: flutter build appbundle
   
@@ -58,10 +62,11 @@ jobs:
           # Define which stable flutter version should be used
           flutter-version: "3.3.10"
           channel: 'stable'
+          # Enables cache for flutter packages
+          # Speed up the build process
           cache: true
       # Get Flutter project dependencies
       - name: Get dependencies
         run: flutter pub get
-      # Build Android App Bundle
       - name: Start release build
         run: flutter build ipa
