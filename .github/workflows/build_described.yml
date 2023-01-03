@@ -33,7 +33,8 @@ jobs:
           # Speed up the build process
           cache: 'gradle'
       # Download and install flutter packages
-      - uses: subosito/flutter-action@v2
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
         with:
           # Define which stable flutter version should be used
           flutter-version: "3.3.10"
@@ -45,7 +46,7 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
       # Build Android App Bundle which by default will be stored in the ./build/app/outputs/bundle/release as app-release.aab
-      - name: Start release build
+      - name: Build release app bundle
         run: flutter build appbundle
       # Upload the build to the GitHub Actions artifacts
       - uses: actions/upload-artifact@v3
