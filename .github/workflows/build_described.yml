@@ -51,11 +51,21 @@ jobs:
       - name: Build release app bundle
         run: flutter build appbundle
       # Upload the build to the GitHub Actions artifacts
+      # You can check them at the particular workflow run
       - name: Upload App Bundle
         uses: actions/upload-artifact@v3
         with:
           name: Android App Bundle
           path: ./build/app/outputs/bundle/release/app-release.aab
+      - name: Sign App Bundle
+        uses: r0adkll/sign-android-release@v1
+        id: sign_app
+        with:
+          releaseDirectory: build/app/outputs/bundle/release/
+          signingKeyBase64: ${{ secrets.ANDROID_KEYSTORE_FILE_BASE64 }}
+          alias: ${{ secrets.ANDROID_SIGNING_KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
   
   build_ios:
     # Defines what operating system will be used for the actions.
