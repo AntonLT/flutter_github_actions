@@ -66,6 +66,11 @@ jobs:
           alias: ${{ secrets.ANDROID_SIGNING_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
+      - name: Upload Signed App Bundle
+        uses: actions/upload-artifact@v3
+        with:
+          name: Android App Bundle (Signed)
+          path: ${{steps.sign_app.outputs.signedReleaseFile}}
   
   build_ios:
     # Defines what operating system will be used for the actions.
