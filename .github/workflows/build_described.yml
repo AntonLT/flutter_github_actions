@@ -47,6 +47,11 @@ jobs:
       # Build Android App Bundle which by default will be stored in the ./build/app/outputs/bundle/ as app-release.aab
       - name: Start release build
         run: flutter build appbundle
+      # Upload the build to the GitHub Actions artifacts
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Android App Bundle
+          path: ./build/app/outputs/bundle/app-release.aab
   
   build_ios:
     # Defines what operating system will be used for the actions.
