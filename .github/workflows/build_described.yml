@@ -4,101 +4,37 @@ name: Build
 # Controls what will trigger the workflow.
 # Change it if you need.
 on:
-  # A new push to the “main” branch.
-  push:
-    branches: [ "main" ]
-  # A new pull request to the “main” branch.
-  pull_request:
-    branches: [ "main" ]
-  # Allows to trigger the workflow from GitHub interfaces.
-  workflow_dispatch:
+ # A new push to the "main" branch.
+ push:
+   branches: [ "main" ]
+ # A new pull request to the "main" branch.
+ pull_request:
+   branches: [ "main" ]
+ # Allows to trigger the workflow from GitHub interfaces.
+ workflow_dispatch:
 
 # A single workflow can have multiple jobs.
 jobs:
-  # ‘A new job is defined with the name: “build Android”
-  build_android:
-    # Defines what operating system will be used for the actions.
-    # For android, we will use linux GitHub-Hosted Runner.
-    runs-on: ubuntu-22.04
-    # Defines what step should be passed for successful run
-    steps:
-      # Checkout to the selected branch
-      - name: Checkout
-        uses: actions/checkout@v3
-      # Download and install java
-      # - name: Install Java
-      #   uses: actions/setup-java@v3
-      #   with:
-      #     distribution: 'zulu'
-      #     java-version: "11.0"
-      #     # Enables cache for java
-      #     # Speed up the build process
-      #     cache: 'gradle'
-      # Download and install flutter packages
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          # Define which stable flutter version should be used
-          flutter-version: "3.3.10"
-          channel: 'stable'
-          # Enables cache for flutter packages
-          # Speed up the build process
-          cache: true
-      # Get Flutter project dependencies
-      - name: Get dependencies
-        run: flutter pub get
-      # Build Android App Bundle which by default will be stored in the ./build/app/outputs/bundle/release as app-release.aab
-      - name: Build release app bundle
-        run: flutter build appbundle
-      # Upload the build to the GitHub Actions artifacts
-      # You can check them at the particular workflow run
-      - name: Upload App Bundle
-        uses: actions/upload-artifact@v3
-        with:
-          name: Android App Bundle
-          path: ./build/app/outputs/bundle/release/app-release.aab
-      - name: Sign App Bundle
-        uses: r0adkll/sign-android-release@v1
-        id: sign_app
-        with:
-          releaseDirectory: build/app/outputs/bundle/release/
-          signingKeyBase64: ${{ secrets.ANDROID_KEYSTORE_FILE_BASE64 }}
-          alias: ${{ secrets.ANDROID_SIGNING_KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          keyPassword: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
-      - name: Upload Signed App Bundle
-        uses: actions/upload-artifact@v3
-        with:
-          name: Android App Bundle (Signed)
-          path: ${{steps.sign_app.outputs.signedReleaseFile}}
-      - name: Upload to Play Store
-        uses: r0adkll/upload-google-play@v1.0.18
-        with:
-          serviceAccountJsonPlainText: ${{ secrets.ANDROID_SERVICE_ACCOUNT_JSON }}
-          packageName: com.testgroup.flutter_github_actions
-          releaseFiles: ${{steps.sign_app.outputs.signedReleaseFile}}
-          mappingFile: ./build/app/outputs/mapping/release/mapping.txt
-          track: internal
-  
-  build_ios:
-    # Defines what operating system will be used for the actions.
-    # For android, we will use linux GitHub-Hosted Runner.
-    runs-on: macos-12
-    # Defines what step should be passed for successful run
-    steps:
-      # Checkout to the selected branch
-      - uses: actions/checkout@v3
-      # Download and install flutter packages
-      - uses: subosito/flutter-action@v2
-        with:
-          # Define which stable flutter version should be used
-          flutter-version: "3.3.10"
-          channel: 'stable'
-          # Enables cache for flutter packages
-          # Speed up the build process
-          cache: true
-      # Get Flutter project dependencies
-      - name: Get dependencies
-        run: flutter pub get
-      - name: Start release build
-        run: flutter build ios
+ # 'A new job is defined with the name: "build_android"
+ build_android:
+   # Defines what operating system will be used for the actions.
+   # For android, we will use Linux GitHub-Hosted Runner.
+   runs-on: ubuntu-22.04
+   # Defines what step should be passed for successful run
+   steps:
+     # Checkout to the selected branch
+     - name: Checkout
+       uses: actions/checkout@v3
+     # Download and install flutter packages
+     - name: Install Flutter
+       uses: subosito/flutter-action@v2
+       with:
+         # Define which stable flutter version should be used
+         flutter-version: "3.3.10"
+         channel: 'stable'
+         # Enables cache for flutter packages
+         # Speed up the build process
+         cache: true
+     # Get Flutter project dependencies
+     - name: Get dependencies
+       run: flutter pub get
