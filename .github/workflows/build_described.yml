@@ -26,14 +26,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       # Download and install java
-      - name: Install Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'zulu'
-          java-version: "11.0"
-          # Enables cache for java
-          # Speed up the build process
-          cache: 'gradle'
+      # - name: Install Java
+      #   uses: actions/setup-java@v3
+      #   with:
+      #     distribution: 'zulu'
+      #     java-version: "11.0"
+      #     # Enables cache for java
+      #     # Speed up the build process
+      #     cache: 'gradle'
       # Download and install flutter packages
       - name: Install Flutter
         uses: subosito/flutter-action@v2
